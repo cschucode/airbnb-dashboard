@@ -1,0 +1,33 @@
+<nav>
+	<ul>
+		<li><a href="/dashboard"><img src="/images/social_media_icons/home-symbol.svg" class="home-symbol" /></a></li>
+		<li>
+			{{#each paths}}
+				{{#each this}}
+					<span class="titlecase path"><a href="/dashboard">{{@key}}</a></span>
+				{{/each}}
+			{{/each}}
+		</li>
+		<li>
+		{{! <a href="/logout" class="font-gray logout">Log Out</a> }}
+		</li>
+	</ul>
+</nav>
+
+<hr />
+
+
+{{#if admin}}
+	<div class="admin-subheader relative bg-pink">
+		<div class="row">
+			<a href="/admin/services" class="col-1 text-center">Services</a>
+			<a href="/admin/accounts" class="col-1 text-center">Accounts</a>
+			{{! <a href="/admin/users" class="col-1 text-center">Users</a> }}
+		</div>
+	</div>
+{{/if}}
+
+
+
+
+

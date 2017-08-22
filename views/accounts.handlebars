@@ -1,0 +1,50 @@
+{{>subheader}}
+
+
+<div class="main-content bg-gray">
+	<div class="admin-list-container bg-gray text-center">
+
+		{{#each accounts}}
+			<form class="admin-list well relative" action="/accounts" method="post">
+				<input type="text" name="_id" value="{{this._id}}" hidden />
+				<label for="service_name">Service Name: </label>
+				<span>{{this.service_name.service_name}}</span>
+				<label for="account_name">Account Name: </label>
+				<input type="text" name="account_name" value="{{this.account_name}}" />
+				<label for="country">Country: </label>
+				<input type="text" name="country" value="{{this.country}}" />
+				<label for="profile_uri">Profile URI: </label>
+				<input type="text" name="profile_uri" value="{{this.profile_uri}}" />
+				<label for="feed_uri">Recent Feeds URI: </label>
+				<input type="text" name="feed_uri" value="{{this.feed_uri}}" />
+				<div class="text-center buttons absolute">
+					<button type="submit" class="btn bg-pink ">Save</button>
+					<a class="btn bg-pink" href="/accounts/delete/{{this._id}}">Delete</a>
+					<a class="btn bg-pink" href="/{{this.service_name.service_name}}/profile/{{this._id}}">Get Profile</a>					
+					<a class="btn bg-pink" href="/{{this.service_name.service_name}}/recent-feeds/{{this._id}}">Recent Feeds</a>
+				</div>
+			</form>
+		{{/each}}
+
+		<form class="admin-list well relative" action="/accounts" method="post">
+			<label for="service_name">Service Name: </label>
+			<select name="service_name">
+				{{#each configuredServices}}
+					<option value="{{this}}">{{this}}</option>
+				{{/each}}
+			</select>
+			<label for="account_name">Account Name: </label>
+			<input type="text" name="account_name" value="" />
+			<label for="country">Country: </label>
+			<input type="text" name="country" value="" />
+			<label for="profile_uri">Profile URI: </label>
+			<input type="text" name="profile_uri" value="{{this.profile_uri}}" />
+			<label for="feed_uri">Recent Feeds URI: </label>
+			<input type="text" name="feed_uri" value="{{this.feed_uri}}" />
+			<div class="text-center absolute buttons">
+				<button type="submit" class="btn bg-pink ">Add</button>
+			</div>
+		</form>
+
+	</div>
+</div>

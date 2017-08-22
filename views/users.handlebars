@@ -1,0 +1,51 @@
+{{>subheader}}
+
+<div class="main-content bg-gray">
+	<div class="admin-list-container text-center">
+
+		{{#each users}}
+			<form class="admin-list well relative" action="/users" method="post">
+				<input type="text" name="_id" value="{{this._id}}" hidden />
+				<label for="name">Name: </label>
+				<input type="text" name="name" value="{{this.name}}" />
+				<label for="email">Email: </label>
+				<input type="text" name="email" value="{{this.email}}" />
+				<label for="password">Password: </label>
+				<input type="text" name="password" value="{{#dot_dot_dot this.password}}{{/dot_dot_dot}}" />
+				<label for="admin">Admin: </label>
+				<select name="admin">
+					{{#if this.admin}} 
+						<option value="true" selected>true</option>
+						<option value="false">false</option>
+					{{else}}
+						<option value="true">true</option>
+						<option value="false" selected>false</option>
+					{{/if}}
+				</select>
+				<div class="text-center absolute buttons">
+					<button type="submit" class="btn bg-pink">Save</button>
+					<a class="btn bg-pink" href="/users/delete/{{this._id}}">Delete</a>
+				</div>
+			</form>
+		{{/each}}
+
+		<form class="admin-list well relative" action="/users" method="post">
+			<label for="name">Name: </label>
+			<input type="text" name="name" value="" />
+			<label for="email">Email: </label>
+			<input type="text" name="email" value="" />
+			<label for="password">Password: </label>
+			<input type="text" name="password" value="" />
+			<label for="admin">Admin: </label>
+			<select name="admin">
+				<option value="true">true</option>
+				<option value="false" selected>false</option>
+			</select>
+			<div class="text-center absolute buttons">
+				<button type="submit" class="btn bg-pink">Add</button>
+			</div>
+		</form>
+
+	</div>
+
+</div>

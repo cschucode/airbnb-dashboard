@@ -1,0 +1,41 @@
+{{>subheader}}
+
+<div class="main-content bg-gray">
+	<div class="admin-list-container bg-gray text-center">
+
+		{{#each services}}
+			<form class="admin-list well relative" action="/home/services" method="post">
+				<input class="" type="text" name="_id" value="{{this._id}}" hidden />
+				<label for='service_name'>Service Name: </label>
+				<span class="">{{this.service_name}}</span>
+				<label for='client_id'>Client ID: </label>
+				<span class="">{{this.client_id}}</span>
+				<label for='token'>Token: </label>
+				<span class="">{{#dot_dot_dot this.token}}{{/dot_dot_dot}}</span>
+				<div class="text-center buttons absolute">
+					<a class="btn bg-pink" href="/services/delete/{{this._id}}">Delete</button>
+					{{#if this.token}}
+						<a class="btn bg-pink" href="/{{this.service_name}}/access-token">Refresh Token</a>
+					{{else}}
+						<a class="btn bg-pink" href="/{{this.service_name}}/access-token">New Token</a>
+					{{/if}}
+				</div>
+			</form>
+		{{/each}}
+		<span>{{message}}</span>
+
+		<form class="admin-list well relative" action="/services" method="post">
+			<label for="service_name">Service Name: </label>
+			<select class="" name="service_name">
+				{{#each configuredServices}}
+					<option value="{{this}}">{{this}}</option>
+				{{/each}}
+			</select>
+			<div class="text-center absolute buttons">
+				<button type="submit" class="btn bg-pink col-1">Add</button>
+			</div>
+		</form>
+
+	</div>
+
+</div>
